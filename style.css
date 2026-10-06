@@ -1,0 +1,357 @@
+/* 整個網頁的基本設定 */
+body {
+  margin: 0;
+  font-family: -apple-system, "PingFang TC", "Microsoft JhengHei", sans-serif;
+  background-color: #fdf8f3;
+  color: #333;
+}
+
+/* 最上方的標題區 */
+.site-header {
+  background-color: #c0392b; /* 蘋果紅 */
+  color: white;
+  text-align: center;
+  padding: 24px 16px;
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.subtitle {
+  margin: 8px 0 0;
+  opacity: 0.9;
+}
+
+/* 主要內容區：限制寬度，手機和電腦都好讀 */
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* 區塊標題，例如「每日行程」 */
+.section-title {
+  font-size: 1.2rem;
+  margin: 8px 0 12px;
+}
+
+/* ===== 行程首頁：日期卡片 ===== */
+.day-list {
+  list-style: none; /* 拿掉清單前面的圓點 */
+  margin: 0;
+  padding: 0;
+}
+
+.day-card {
+  text-decoration: none; /* 卡片是連結，拿掉底線 */
+  color: inherit;        /* 文字不要變成連結的藍色 */
+  display: flex; /* 左邊日期、右邊內容，左右並排 */
+  gap: 16px;
+  align-items: center;
+  background-color: white;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* 左邊的紅色日期方塊 */
+.day-badge {
+  flex-shrink: 0; /* 畫面變窄時不要被擠扁 */
+  width: 72px;
+  text-align: center;
+  background-color: #c0392b;
+  color: white;
+  border-radius: 10px;
+  padding: 8px 4px;
+}
+
+.day-number {
+  display: block;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.day-date {
+  display: block;
+  font-size: 0.8rem;
+  margin-top: 2px;
+}
+
+/* 右邊的文字內容 */
+.day-title {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+}
+
+.day-area,
+.day-count {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.day-info {
+  flex: 1; /* 佔滿中間的空間，把箭頭推到最右邊 */
+}
+
+.arrow {
+  font-size: 1.6rem;
+  color: #ccc;
+}
+
+/* 滑鼠移上去／手指按下時，卡片稍微變色，讓人知道可以點 */
+.day-card:hover,
+.day-card:active {
+  background-color: #fff3ef;
+}
+
+/* ===== 每日行程頁 ===== */
+.back-link {
+  display: inline-block;
+  color: #c0392b;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 4px 0 12px;
+}
+
+.day-header {
+  margin-bottom: 16px;
+}
+
+.day-header-badge {
+  display: inline-block;
+  background-color: #c0392b;
+  color: white;
+  font-size: 0.85rem;
+  border-radius: 20px;
+  padding: 3px 12px;
+}
+
+.day-header h2 {
+  margin: 8px 0 4px;
+}
+
+.day-header p {
+  margin: 0;
+  color: #777;
+}
+
+/* 地點卡片 */
+.place-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.place-card {
+  background-color: white;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  border-left: 5px solid #ccc; /* 左邊的色條，依類型換顏色 */
+  overflow: hidden;
+}
+
+/* 卡片上半部（平常看得到、可以點的部分） */
+.place-head {
+  display: flex;
+  gap: 12px;
+  padding: 12px 14px;
+  cursor: pointer;   /* 滑鼠移上去變成手指 */
+  list-style: none;  /* 拿掉瀏覽器預設的小三角形 */
+}
+
+.place-head::-webkit-details-marker {
+  display: none;     /* Safari 的小三角形要另外拿掉 */
+}
+
+/* 右邊的展開箭頭：點開後轉 180 度 */
+.toggle-icon {
+  color: #bbb;
+  transition: transform 0.2s;
+}
+
+.place-card[open] .toggle-icon {
+  transform: rotate(180deg);
+}
+
+/* 點開後的詳細資訊區 */
+.place-detail {
+  padding: 0 14px 14px 52px; /* 左邊空出圖示的寬度，文字對齊 */
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.place-detail p {
+  margin: 0 0 8px;
+}
+
+.detail-tips {
+  background-color: #fffbea;
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+
+.detail-row {
+  color: #555;
+}
+
+.detail-empty {
+  color: #aaa;
+}
+
+/* 電話、地圖按鈕 */
+.detail-buttons {
+  display: flex;
+  flex-wrap: wrap; /* 手機太窄時自動換行 */
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 20px;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.btn-phone {
+  background-color: #e8f8ee;
+  color: #1e8449;
+}
+
+.btn-map {
+  background-color: #eaf2fb;
+  color: #1f618d;
+}
+
+/* 不同類型用不同顏色的左側色條 */
+.type-transport { border-left-color: #2980b9; } /* 藍：交通 */
+.type-spot      { border-left-color: #27ae60; } /* 綠：景點 */
+.type-food      { border-left-color: #e67e22; } /* 橘：餐廳 */
+.type-hotel     { border-left-color: #8e44ad; } /* 紫：住宿 */
+
+.place-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  padding-top: 2px;
+}
+
+.place-info {
+  flex: 1;
+  min-width: 0; /* 讓很長的店名可以正常換行 */
+}
+
+.place-time {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.place-name {
+  margin: 2px 0 4px;
+  font-size: 1rem;
+}
+
+.place-summary {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* ===== 緊急聯絡資訊 ===== */
+
+/* 首頁上方的紅色按鈕 */
+.emergency-button {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  background-color: white;
+  color: #c0392b;
+  border: 2px solid #c0392b;
+  border-radius: 12px;
+  padding: 12px;
+  font-weight: bold;
+  font-size: 1.05rem;
+  margin-bottom: 16px;
+}
+
+.emergency-button:hover,
+.emergency-button:active {
+  background-color: #c0392b;
+  color: white;
+}
+
+.emergency-note {
+  font-size: 0.85rem;
+  color: #777;
+  margin: 0 0 12px;
+}
+
+.contact-list {
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+}
+
+.contact-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.contact-name {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+/* 大大的撥號按鈕，緊急時比較好按 */
+.contact-phone {
+  display: inline-block;
+  background-color: #c0392b;
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 24px;
+  padding: 8px 18px;
+}
+
+.contact-note {
+  margin: 8px 0 0;
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+.contact-source {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: #1f618d;
+}
+
+.contact-empty {
+  margin: 0;
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+/* 「範例」小標籤 */
+.tag-sample {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: normal;
+  background-color: #f1c40f;
+  color: #333;
+  border-radius: 4px;
+  padding: 1px 6px;
+  vertical-align: middle;
+}
