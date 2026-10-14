@@ -266,6 +266,17 @@ main {
 
 /* ===== 緊急聯絡資訊 ===== */
 
+/* 首頁上方的兩顆按鈕，左右並排 */
+.home-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.home-buttons a {
+  flex: 1; /* 兩顆按鈕一樣寬 */
+}
+
 /* 首頁上方的紅色按鈕 */
 .emergency-button {
   display: block;
@@ -278,7 +289,6 @@ main {
   padding: 12px;
   font-weight: bold;
   font-size: 1.05rem;
-  margin-bottom: 16px;
 }
 
 .emergency-button:hover,
@@ -342,6 +352,109 @@ main {
   margin: 0;
   color: #aaa;
   font-size: 0.9rem;
+}
+
+/* ===== 行前準備清單 ===== */
+
+/* 首頁上方的綠色按鈕 */
+.checklist-button {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  background-color: white;
+  color: #1e8449;
+  border: 2px solid #1e8449;
+  border-radius: 12px;
+  padding: 12px;
+  font-weight: bold;
+  font-size: 1.05rem;
+}
+
+.checklist-button:hover,
+.checklist-button:active {
+  background-color: #1e8449;
+  color: white;
+}
+
+.checklist-progress {
+  margin: 0 0 6px;
+  font-weight: bold;
+}
+
+/* 進度條：灰色底，綠色部分依完成比例變長 */
+.progress-bar {
+  height: 10px;
+  background-color: #e5e5e5;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #27ae60;
+  transition: width 0.3s;
+}
+
+.checklist-category {
+  font-size: 1rem;
+  color: #c0392b;
+  margin: 20px 0 8px;
+}
+
+.checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.checklist li + li {
+  border-top: 1px solid #f0f0f0; /* 項目之間的分隔線 */
+}
+
+/* 整列都可以點，不用剛好點到小方框 */
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  cursor: pointer;
+}
+
+.check-item input {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  accent-color: #27ae60; /* 勾勾的顏色 */
+}
+
+/* 打勾後文字變灰、加刪除線 */
+.check-item input:checked + span {
+  color: #aaa;
+  text-decoration: line-through;
+}
+
+.reset-button {
+  display: block;
+  margin: 20px auto 8px;
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 8px 16px;
+  color: #777;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.checklist-hint {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #999;
+  margin: 0 0 16px;
 }
 
 /* 「範例」小標籤 */

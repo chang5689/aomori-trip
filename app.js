@@ -16,7 +16,12 @@ const typeInfo = {
 // ---------------------------------------------
 function renderHome() {
   // 最上面放緊急聯絡按鈕，遇到狀況時第一眼就找得到
-  let html = "<a class=\"emergency-button\" href=\"#emergency\">🆘 緊急聯絡資訊</a>";
+  let html = `
+    <div class="home-buttons">
+      <a class="emergency-button" href="#emergency">🆘 緊急聯絡</a>
+      <a class="checklist-button" href="#checklist">✅ 行前清單</a>
+    </div>
+  `;
   html += "<h2 class=\"section-title\">每日行程</h2>";
   html += "<ul class=\"day-list\">";
 
@@ -155,6 +160,104 @@ function renderEmergency() {
 }
 
 // ---------------------------------------------
+// 畫面 4：行前準備清單
+// ---------------------------------------------
+
+// localStorage 是瀏覽器內建的小儲存空間，關掉網頁再打開資料還在
+// 我們用一個「名稱」當作抽屜，把打勾的項目存在裡面
+const CHECKLIST_KEY = "aomori-checklist";
+
+// 讀取已打勾的項目，例如 { "護照": true }
+function loadChecked() {
+  try {
+    const saved = localStorage.getItem(CHECKLIST_KEY);
+    return saved ? JSON.parse(saved) : {};
+  } catch (error) {
+    return {}; // 讀不到（例如無痕模式）就當作都沒打勾
+  }
+}
+
+// 儲存已打勾的項目
+function saveChecked(checked) {
+  try {
+    localStorage.setItem(CHECKLIST_KEY, JSON.stringify(checked));
+  } catch (error) {
+    // 存不進去也不影響畫面，只是下次打開不會記得
+  }
+}
+
+function renderChecklist() {
+  const checked = loadChecked();
+
+  // 計算總共幾項、完成幾項
+  let total = 0;
+  let done = 0;
+  checklist.forEach(function (group) {
+    group.items.forEach(function (item) {
+      total += 1;
+      if (checked[item]) {
+        done += 1;
+      }
+    });
+  });
+
+  let html = `
+    <a class="back-link" href="#">‹ 回到首頁</a>
+    <h2 class="section-title">✅ 行前準備清單</h2>
+    <p class="checklist-progress">已完成 ${done} / ${total} 項</p>
+    <div class="progress-bar"><div class="progress-fill" style="width: ${total ? (done / total) * 100 : 0}%"></div></div>
+  `;
+
+  checklist.forEach(function (group) {
+    html += `<h3 class="checklist-category">${group.category}</h3>`;
+    html += "<ul class=\"checklist\">";
+
+    group.items.forEach(function (item) {
+      // 打勾過的項目加上 checked，讓勾勾顯示出來
+      const isChecked = checked[item] ? "checked" : "";
+      html += `
+        <li>
+          <label class="check-item">
+            <input type="checkbox" data-item="${item}" ${isChecked}>
+            <span>${item}</span>
+          </label>
+        </li>
+      `;
+    });
+
+    html += "</ul>";
+  });
+
+  html += "<button class=\"reset-button\" id=\"reset-checklist\">全部取消打勾</button>";
+  html += "<p class=\"checklist-hint\">打勾的狀態只存在這支手機（這個瀏覽器）裡，朋友的清單各自獨立。</p>";
+
+  app.innerHTML = html;
+
+  // 每個勾選框被點的時候：更新紀錄、存起來、重畫畫面（更新進度）
+  app.querySelectorAll("input[type=checkbox]").forEach(function (box) {
+    box.addEventListener("change", function () {
+      const latest = loadChecked();
+      const item = box.dataset.item;
+      if (box.checked) {
+        latest[item] = true;
+      } else {
+        delete latest[item];
+      }
+      saveChecked(latest);
+      renderChecklist();
+    });
+  });
+
+  // 「全部取消打勾」按鈕：先確認，避免不小心按到
+  document.getElementById("reset-checklist").addEventListener("click", function () {
+    if (confirm("確定要把全部項目取消打勾嗎？")) {
+      saveChecked({});
+      renderChecklist();
+    }
+  });
+}
+
+// ---------------------------------------------
 // 地點卡片點開後的「詳細資訊」
 // 有資料的欄位才顯示，沒有的就跳過
 // ---------------------------------------------
@@ -208,6 +311,7 @@ function googleMapsUrl(query) {
 // 依照網址決定要顯示哪個畫面
 //   網址結尾是 #day-3      → 顯示第 3 天
 //   網址結尾是 #emergency  → 顯示緊急聯絡資訊
+//   網址結尾是 #checklist  → 顯示行前準備清單
 //   沒有 # 或其他          → 顯示首頁
 // ---------------------------------------------
 function showPage() {
@@ -215,6 +319,9 @@ function showPage() {
 
   if (hash === "#emergency") {
     renderEmergency();
+  } else if (hash === "#checklist") {
+    renderChecklist();
+    window.scrollTo(0, 0);
   } else if (hash.startsWith("#day-")) {
     const dayNumber = Number(hash.replace("#day-", "")); // 取出數字 3
     renderDay(dayNumber);
