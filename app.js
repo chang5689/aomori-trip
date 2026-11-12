@@ -20,6 +20,8 @@ function renderHome() {
     <div class="home-buttons">
       <a class="emergency-button" href="#emergency">🆘 緊急聯絡</a>
       <a class="checklist-button" href="#checklist">✅ 行前清單</a>
+      <a class="insurance-button" href="#insurance">🛡️ 日本保險</a>
+      <a class="entry-forms-button" href="#entry-forms">📝 入境表格</a>
     </div>
   `;
   html += "<h2 class=\"section-title\">每日行程</h2>";
@@ -126,6 +128,28 @@ function renderEmergency() {
         <a class="contact-phone" href="tel:${contact.phone}">📞 ${contact.phone}</a>
         <p class="contact-note">${contact.note}</p>
         <a class="contact-source" href="${contact.source}" target="_blank">官方來源 ↗</a>
+      </li>
+    `;
+  });
+
+  html += "</ul>";
+
+  // 怎麼撥打：資料放在 data.js 的 dialGuide
+  html += "<h2 class=\"section-title\">📞 怎麼撥打</h2>";
+  html += "<ul class=\"contact-list\">";
+
+  dialGuide.forEach(function (guide) {
+    // 把每一點說明變成清單的一行
+    let stepsHtml = "";
+    guide.steps.forEach(function (step) {
+      stepsHtml += `<li>${step}</li>`;
+    });
+
+    html += `
+      <li class="contact-card">
+        <h3 class="contact-name">${guide.title}</h3>
+        <ul class="dial-steps">${stepsHtml}</ul>
+        <a class="contact-source" href="${guide.source}" target="_blank">資料來源 ↗</a>
       </li>
     `;
   });
@@ -258,6 +282,71 @@ function renderChecklist() {
 }
 
 // ---------------------------------------------
+// 畫面 5：日本旅遊保險
+// ---------------------------------------------
+function renderInsurance() {
+  // 資料放在 data.js 的 japanInsurance
+  const html = `
+    <a class="back-link" href="#">‹ 回到首頁</a>
+    <h2 class="section-title">🛡️ 日本旅遊保險</h2>
+    <div class="contact-card">
+      <h3 class="contact-name">${japanInsurance.name}</h3>
+      <p class="contact-note">${japanInsurance.note}</p>
+      <ol class="insurance-steps">
+        <li>下飛機，先完成入境</li>
+        <li>手機連上日本當地網路</li>
+        <li>點下面的按鈕進入官網投保</li>
+      </ol>
+      <a class="btn btn-map" href="${japanInsurance.url}" target="_blank">前往投保頁面 ↗</a>
+    </div>
+  `;
+
+  app.innerHTML = html;
+  window.scrollTo(0, 0);
+}
+
+// ---------------------------------------------
+// 畫面 6：入境紙本表格填寫範例
+// ---------------------------------------------
+function renderEntryForms() {
+  let html = `
+    <a class="back-link" href="#">‹ 回到首頁</a>
+    <h2 class="section-title">📝 入境表格填寫範例</h2>
+    <p class="emergency-note">範例都是假資料（WANG XIAOMING），請照自己的護照填。日本已公布入境卡改版草案，12/20 拿到的表格可能和這裡不同，以現場的表格為準。</p>
+  `;
+
+  // 資料放在 data.js 的 entryForms，每張表格一個區塊
+  entryForms.forEach(function (form) {
+    html += `<h3 class="checklist-category">${form.title}</h3>`;
+    html += `<p class="emergency-note">${form.note}</p>`;
+    html += "<ul class=\"form-field-list\">";
+
+    form.fields.forEach(function (field) {
+      html += `
+        <li class="form-field">
+          <p class="form-field-label">${field.label}</p>
+          <p class="form-field-example">${field.example}</p>
+          ${field.note ? `<p class="form-field-note">${field.note}</p>` : ""}
+        </li>
+      `;
+    });
+
+    html += "</ul>";
+  });
+
+  html += `
+    <p class="emergency-note">
+      欄位照官方表格整理（2026/11/12 查詢）：
+      <a class="contact-source" href="https://www.moj.go.jp/isa/immigration/procedures/translation.html" target="_blank">入境卡 ↗</a>
+      <a class="contact-source" href="https://www.customs.go.jp/kaigairyoko/shinkokusho.htm" target="_blank">海關申報單 ↗</a>
+    </p>
+  `;
+
+  app.innerHTML = html;
+  window.scrollTo(0, 0);
+}
+
+// ---------------------------------------------
 // 地點卡片點開後的「詳細資訊」
 // 有資料的欄位才顯示，沒有的就跳過
 // ---------------------------------------------
@@ -312,6 +401,8 @@ function googleMapsUrl(query) {
 //   網址結尾是 #day-3      → 顯示第 3 天
 //   網址結尾是 #emergency  → 顯示緊急聯絡資訊
 //   網址結尾是 #checklist  → 顯示行前準備清單
+//   網址結尾是 #insurance  → 顯示日本旅遊保險
+//   網址結尾是 #entry-forms → 顯示入境表格填寫範例
 //   沒有 # 或其他          → 顯示首頁
 // ---------------------------------------------
 function showPage() {
@@ -319,6 +410,10 @@ function showPage() {
 
   if (hash === "#emergency") {
     renderEmergency();
+  } else if (hash === "#insurance") {
+    renderInsurance();
+  } else if (hash === "#entry-forms") {
+    renderEntryForms();
   } else if (hash === "#checklist") {
     renderChecklist();
     window.scrollTo(0, 0);

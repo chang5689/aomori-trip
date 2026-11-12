@@ -252,118 +252,99 @@ const tripData = {
     {
       day: 5,
       date: "12/24（四）",
-      title: "八戶一日遊",
+      title: "八戶一日遊・聖誕市集煙火",
       area: "青森市 → 八戶 → 青森市",
       places: [
         {
-          name: "青森站 → 新青森站",
+          name: "青森站 → 八戶站",
           type: "transport",
-          time: "5:41 → 5:45",
-          summary: "JR 奧羽本線首班車",
-          detail: "從青森站搭最早一班 JR 奧羽本線，5:41 出發，5:45 抵達新青森站。",
-          tips: "新幹線不停青森站，要先到「新青森站」。很早出發，前一晚先準備好。",
+          time: "A 07:24 或 B 07:52 出發",
+          summary: "兩個班次二選一，不吃早餐直接去八戶",
+          detail: "A：07:24 → 08:10，46 分鐘，3,800 日圓，在新青森站轉隼號新幹線（轉乘 1 次）。　B：07:52 → 09:26，1 小時 34 分鐘，2,700 日圓，普通列車直達，不用轉車。",
+          tips: "八食中心和巴士都是 9:00 開始。選 A 會比較早到，要在八戶站等一下；選 B 比較便宜。（2026/11/12 用 NAVITIME 查詢）",
           mapQuery: "青森駅"
         },
         {
-          name: "新青森站 → 八戶站",
+          name: "八戶站 → 八食中心",
           type: "transport",
-          time: "6:18 → 6:41",
-          summary: "東北新幹線",
-          detail: "從新青森站搭東北新幹線，6:18 出發，6:41 抵達八戶站。",
-          tips: "",
-          mapQuery: "新青森駅"
-        },
-        {
-          name: "八戶站 → 陸奧湊站",
-          type: "transport",
-          time: "7:08 → 7:24",
-          summary: "JR 八戶線",
-          detail: "在八戶站轉乘 JR 八戶線，7:08 出發，7:24 抵達陸奧湊站。",
-          tips: "八戶站有大約 27 分鐘的轉車時間。",
+          time: "班次待確認",
+          summary: "南部巴士「八食 150 日圓巴士」，約 10～12 分鐘",
+          detail: "在 JR 八戶站東口的「4 號巴士乘車處」搭南部巴士往八食中心方向，車程大約 10～12 分鐘，車資 150 日圓。",
+          tips: "可以付現金或用 Suica、PASMO 等交通 IC 卡。用 IC 卡的話照車內指示刷卡。",
           mapQuery: "八戸駅"
         },
         {
-          name: "陸奧湊站前早市",
+          name: "八食中心",
           type: "food",
-          time: "早餐",
-          summary: "車站前的早市，吃海鮮早餐",
-          detail: "就在陸奧湊站前。市場大約 3:00～14:00，食堂大約 6:00～10:00。",
-          tips: "週日休息（12/24 是週四，有營業）。",
-          mapQuery: "陸奥湊駅前朝市"
+          time: "早午餐（9:00 開門）",
+          summary: "大型海鮮市場，不吃早餐直接來吃海鮮",
+          detail: "市場內有很多海鮮攤位和食堂。市場棟營業時間 9:00～18:00。",
+          tips: "週三休息（12/24 是週四，有營業）。",
+          mapQuery: "八食センター"
         },
         {
-          name: "陸奧湊站 → 蕪嶋神社",
+          name: "八食中心 → 八戶站",
           type: "transport",
-          time: "早餐後",
-          summary: "JR 八戶線到鮫站，步行約 15 分鐘",
-          detail: "從陸奧湊站搭 JR 八戶線往鮫方向，在鮫站下車，再步行約 15 分鐘到蕪嶋神社。",
+          time: "吃完後",
+          summary: "搭巴士回八戶站",
+          detail: "從八食中心搭南部巴士回八戶站。",
           tips: "",
+          mapQuery: "八食センター"
+        },
+        {
+          name: "（備用）八戶站 → 鮫站",
+          type: "transport",
+          time: "時間待確認",
+          summary: "要去蕪嶋神社才搭：JR 八戶線到鮫站，步行約 15 分鐘",
+          detail: "從八戶站搭 JR 八戶線往鮫方向，在鮫站下車，再步行約 15 分鐘到蕪嶋神社。",
+          tips: "JR 八戶線班次比較少，出發前先查好時間。",
           mapQuery: "鮫駅"
         },
         {
-          name: "蕪嶋神社",
+          name: "（備用）蕪嶋神社",
           type: "spot",
-          time: "上午",
-          summary: "海邊小島上的神社",
+          time: "時間夠再去",
+          summary: "海邊小島上的神社，不一定會去",
           detail: "位於海邊的蕪島上，可以眺望海景。",
           tips: "10～3 月參拜時間 8:45～16:50。",
           address: "青森県八戸市鮫町鮫56-2",
           mapQuery: "蕪嶋神社"
         },
         {
-          name: "鮫站 → 八戶站 → 八食中心",
+          name: "（備用）鮫站 → 八戶站",
           type: "transport",
-          time: "中午前",
-          summary: "JR 八戶線回八戶站，再轉 100 日圓巴士",
-          detail: "從鮫站搭 JR 八戶線回八戶站，再搭八戶站往八食中心的 100 日圓巴士。",
-          tips: "100 日圓巴士 9:00～16:00，大約每小時一班。",
+          time: "時間待確認",
+          summary: "JR 八戶線回八戶站",
+          detail: "從鮫站搭 JR 八戶線回八戶站，再接回青森的電車。",
+          tips: "",
+          mapQuery: "鮫駅"
+        },
+        {
+          name: "八戶站 → 青森站",
+          type: "transport",
+          time: "C 12:02／D 12:12／E 13:23／F 14:35 出發",
+          summary: "四個班次選一班，傍晚前回到青森",
+          detail: "C：12:02 → 12:53，51 分鐘，3,800 日圓，搭隼號新幹線到新青森站再轉電車。　D：12:12 → 13:36，2,700 日圓，普通列車直達。　E：13:23 → 14:56，2,700 日圓，普通列車直達。　F：14:35 → 16:10，2,700 日圓，普通列車直達。",
+          tips: "盡量在傍晚前回到青森市區，才來得及逛聖誕市集、看 19:00 的煙火。有去蕪嶋神社的話，E 或 F 比較來得及。（2026/11/12 用 NAVITIME 查詢）",
           mapQuery: "八戸駅"
         },
         {
-          name: "八食中心",
+          name: "聖誕市集（クリスマスマーケット in アスパム）",
           type: "food",
-          time: "午餐",
-          summary: "大型海鮮市場，吃海鮮午餐",
-          detail: "市場內有很多海鮮攤位和食堂。市場棟營業時間 9:00～18:00。",
-          tips: "週三休息（12/24 是週四，有營業）。",
-          mapQuery: "八食センター"
+          time: "傍晚～晚上",
+          summary: "逛聖誕市集，晚餐在市集吃",
+          detail: "在青森縣觀光物產館 ASPAM 的西側會場、館內和青い海公園舉辦，有約 10 公尺高的聖誕樹。12/24 開放時間 11:00～20:30，免費入場，飲食另外付費。",
+          tips: "2026/11/12 查詢，出發前再到官網確認：https://www.aomori-kanko.or.jp/aspam/christmas-market/",
+          mapQuery: "青森県観光物産館アスパム"
         },
         {
-          name: "八食中心 → Hacchi",
-          type: "transport",
-          time: "午餐後",
-          summary: "（交通方式待確認）",
-          detail: "",
-          tips: "",
-          mapQuery: "八戸ポータルミュージアム はっち"
-        },
-        {
-          name: "八戶 Portal Museum Hacchi",
+          name: "冬季煙火（冬の花火）",
           type: "spot",
-          time: "下午",
-          summary: "八戶市中心的文化觀光設施，免費入館",
-          detail: "介紹八戶的文化與工藝，也有展示和小店可以逛。開館時間 9:00～21:00。",
-          tips: "週二休館（12/24 是週四，有開）。",
-          address: "青森県八戸市三日町11-1",
-          phone: "0178-22-8228",
-          mapQuery: "八戸ポータルミュージアム はっち"
-        },
-        {
-          name: "八戶 → 青森市區",
-          type: "transport",
-          time: "傍晚",
-          summary: "新幹線回新青森站，再轉 JR 到青森站",
-          detail: "從八戶站搭東北新幹線到新青森站，再轉 JR 奧羽本線到青森站。",
-          tips: "",
-          mapQuery: "八戸駅"
-        },
-        {
-          name: "晚餐（青森市區）",
-          type: "food",
-          time: "晚餐",
-          summary: "青森市區解決，店家未定",
-          detail: "",
-          tips: ""
+          time: "約 19:00",
+          summary: "聖誕市集的冬季煙火，12/24 有施放",
+          detail: "市集期間會在 12/11、12、13、18、19、20、24、25 施放煙火，時間約 19:00。",
+          tips: "時間是「約」19:00，可能因天候變動，提早在會場等。",
+          mapQuery: "青森県観光物産館アスパム"
         },
         {
           name: "ReLabo Medical Spa & Stay",
@@ -454,6 +435,12 @@ const emergencyContacts = [
     source: "https://www.roc-taiwan.org/jp/index.html"
   },
   {
+    name: "台北駐日經濟文化代表處（東京）24 小時專線",
+    phone: "03-3280-7917",
+    note: "官網列出的 24 小時專線，上面兩支手機號碼打不通時可以改打。（2026/11/12 查詢）",
+    source: "https://roc-taiwan.org/jp/post/331.html"
+  },
+  {
     name: "Japan Visitor Hotline（外國旅客諮詢熱線）",
     phone: "050-3816-2787",
     note: "日本觀光局（JNTO）提供，24 小時全年無休，有中文服務。",
@@ -475,7 +462,7 @@ const checklist = [
       "簽證",
       "日幣現金",
       "信用卡",
-      "旅遊保險（是否已購買）"
+      "台灣旅遊保險（是否已購買）"
     ]
   },
   {
@@ -523,4 +510,108 @@ const personalContacts = [
   { name: "旅遊保險", phone: "", note: "" },
   { name: "信用卡掛失", phone: "", note: "" },
   { name: "住宿電話", phone: "", note: "" }
+];
+
+// =============================================
+// 日本旅遊保險（東京海上日動）
+// 要入境日本後才能投保，到時候點連結進去申請即可
+// =============================================
+const japanInsurance = {
+  name: "東京海上日動 日本旅遊保險",
+  url: "https://tokiomarinenichido.jp/zh-hant/china2/",
+  note: "這家保險要入境日本後，用手機連上日本當地網路才能投保。"
+};
+
+// =============================================
+// 入境紙本表格填寫範例
+// 欄位照官方表格（2026/11/12 查詢）：
+//   入境卡：https://www.moj.go.jp/isa/immigration/procedures/translation.html
+//   海關申報單：https://www.customs.go.jp/kaigairyoko/shinkokusho.htm
+// 範例全部是假資料（WANG XIAOMING），不要填入真實姓名和護照號碼
+//   label    表格上的欄位名稱
+//   example  範例填法
+//   note     填寫說明
+// =============================================
+const entryForms = [
+  {
+    title: "入境卡（外國人入境記錄）",
+    note: "每個人都要各填一張。表格有中文說明，但內容只能用英文或日文填寫。",
+    fields: [
+      { label: "姓 Family Name", example: "WANG", note: "照護照上的英文拼音，全部大寫" },
+      { label: "名 Given Names", example: "XIAOMING", note: "照護照上的英文拼音" },
+      { label: "出生日期 Date of Birth", example: "01 05 1990", note: "順序是「日 → 月 → 年」，和海關申報單相反" },
+      { label: "現住址 Home Address", example: "國家名 TAIWAN／城市名 TAIPEI", note: "填住在台灣哪個城市" },
+      { label: "入境目的 Purpose of visit", example: "☑ 觀光 Tourism", note: "在「觀光」打勾" },
+      { label: "抵達航班號 Last flight No.", example: "XX123", note: "填自己搭的航班號碼（看機票或電子機票）" },
+      { label: "預定停留期間 Intended length of stay", example: "6 DAYS", note: "12/20～12/25，共 6 天" },
+      { label: "在日本的聯絡處 Intended address in Japan", example: "Daiwa Roynet Hotel Aomori", note: "填第 1 晚的飯店名稱" },
+      { label: "電話號碼 TEL", example: "017-732-7380", note: "第 1 晚飯店的電話" },
+      { label: "提問 1：被強制遣返或拒絕入境的經歷", example: "☑ 無 No", note: "" },
+      { label: "提問 2：被判決有罪的記錄", example: "☑ 無 No", note: "" },
+      { label: "提問 3：持有違禁藥物、槍炮、刀劍、火藥", example: "☑ 無 No", note: "" },
+      { label: "簽名 Signature", example: "（親筆簽名）", note: "" }
+    ]
+  },
+  {
+    title: "海關申報單（攜帶品・另寄物品申報單）",
+    note: "所有入境的人都要交。同一家人一起入境，只要填一張。",
+    fields: [
+      { label: "航班號 Flight No.", example: "XX123", note: "和入境卡一樣" },
+      { label: "出發地 Point of embarkation", example: "TAIPEI", note: "從哪個城市出發" },
+      { label: "入境日期 Date of Arrival in Japan", example: "2026 12 20", note: "順序是「年 → 月 → 日」" },
+      { label: "姓名 Name", example: "WANG／XIAOMING", note: "左邊填姓，右邊填名" },
+      { label: "在日本的住址 Address in Japan", example: "Daiwa Roynet Hotel Aomori", note: "填第 1 晚的飯店" },
+      { label: "電話 Tel", example: "017-732-7380", note: "第 1 晚飯店的電話" },
+      { label: "國籍 Nationality", example: "TAIWAN", note: "" },
+      { label: "職業 Occupation", example: "OFFICE WORKER", note: "用英文填自己的職業" },
+      { label: "出生日期 Date of Birth", example: "1990 05 01", note: "順序是「年 → 月 → 日」，和入境卡相反！" },
+      { label: "護照號碼 Passport No.", example: "123456789", note: "這是假號碼，照自己護照填" },
+      { label: "同行家人人數", example: "（沒有就空白）", note: "家人一起申報才填：20 歲以上／6～19 歲／未滿 6 歲各幾人" },
+      { label: "1-① 毒品、槍炮、爆裂物等禁止物品", example: "☑ No", note: "" },
+      { label: "1-② 肉製品、蔬菜、水果、動植物等限制物品", example: "☑ No", note: "有帶肉乾、香腸、水果就要勾 Yes，並先到動植物檢疫櫃台檢查" },
+      { label: "1-③ 金塊或黃金製品", example: "☑ No", note: "" },
+      { label: "1-④ 超過免稅範圍的物品", example: "☑ No", note: "免稅範圍（每人）：酒 3 瓶（每瓶 760ml）、香菸 200 支、其他個人物品海外市價合計 20 萬日圓以內" },
+      { label: "1-⑤ 商業貨物或樣品", example: "☑ No", note: "" },
+      { label: "1-⑥ 受別人委託帶進日本的物品", example: "☑ No", note: "包括別人給你、但沒說明原因的行李箱或物品" },
+      { label: "2. 現金、支票等超過 100 萬日圓，或貴金屬超過 1kg", example: "☑ No", note: "勾 Yes 的話要另外填「支付手段等攜帶輸出入申報書」" },
+      { label: "3. 有沒有另外寄送的物品", example: "☑ No", note: "沒有用郵寄或託運另外寄東西到日本就勾 No" },
+      { label: "簽名 Signature", example: "（親筆簽名）", note: "" }
+    ]
+  }
+];
+
+// =============================================
+// 緊急聯絡頁的「怎麼撥打」說明
+// 2026/11/12 查詢，來源寫在每張卡片的 source
+//   title  卡片標題
+//   steps  說明（一行一點）
+// =============================================
+const dialGuide = [
+  {
+    title: "1. 用台灣門號「語音漫遊」（最直接）",
+    steps: [
+      "台灣門號要先開通「國際漫遊」。就算沒買上網漫遊，只要手機收得到日本電信訊號，通常就能打電話。",
+      "在日本直接撥日本的號碼，不用加 +81。例如急難專線直接撥 080-1009-7179。",
+      "漫遊打電話是國際漫遊通話費，比較貴，長話短說。"
+    ],
+    source: "https://roc-taiwan.org/jp/post/331.html"
+  },
+  {
+    title: "2. 用公用電話（不需要手機訊號）",
+    steps: [
+      "車站、便利商店或路邊常有綠色或灰色的公用電話。可以投 10 円或 100 円硬幣（100 円不找零），或用電話卡。",
+      "拿起話筒直接撥號，不用加國碼。例如 080-1009-7179。",
+      "打 110（報警）、119（救護車／消防）免費：數位公用電話拿起話筒直接撥；類比公用電話先按紅色緊急按鈕，再撥號。"
+    ],
+    source: "https://www.city.nagoya.jp/bousai/shoubou/1012724/1013344/1013345.html"
+  },
+  {
+    title: "3. 只有上網卡／eSIM／Wi-Fi 機，不能打電話時",
+    steps: [
+      "請飯店櫃台、車站站務員或便利商店店員幫忙，借市內電話撥打。",
+      "用 LINE 語音聯絡台灣的家人朋友，請他們在台灣撥外交部緊急聯絡中心 0800-085-095（24 小時、免付費），由外交部聯繫駐日代表處。",
+      "自己從日本打外交部的話要撥 +886-800-085-095，國際電話費自付。"
+    ],
+    source: "https://www.boca.gov.tw/cp-87-2121-7a5da-1.html"
+  }
 ];

@@ -269,12 +269,13 @@ main {
 /* 首頁上方的兩顆按鈕，左右並排 */
 .home-buttons {
   display: flex;
+  flex-wrap: wrap; /* 按鈕太多時自動換行 */
   gap: 10px;
   margin-bottom: 16px;
 }
 
 .home-buttons a {
-  flex: 1; /* 兩顆按鈕一樣寬 */
+  flex: 1 1 40%; /* 一排最多兩顆，多出來的換到下一排 */
 }
 
 /* 首頁上方的紅色按鈕 */
@@ -467,4 +468,101 @@ main {
   border-radius: 4px;
   padding: 1px 6px;
   vertical-align: middle;
+}
+
+/* ===== 日本旅遊保險 ===== */
+
+/* 首頁上方的藍色按鈕 */
+.insurance-button {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  background-color: white;
+  color: #1f618d;
+  border: 2px solid #1f618d;
+  border-radius: 12px;
+  padding: 12px;
+  font-weight: bold;
+}
+
+.insurance-button:hover,
+.insurance-button:active {
+  background-color: #1f618d;
+  color: white;
+}
+
+/* 投保步驟（有編號的清單） */
+.insurance-steps {
+  margin: 8px 0 12px;
+  padding-left: 20px;
+  line-height: 1.8;
+}
+
+/* ===== 入境表格填寫範例 ===== */
+
+/* 首頁上方的橘色按鈕 */
+.entry-forms-button {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  background-color: white;
+  color: #af601a;
+  border: 2px solid #af601a;
+  border-radius: 12px;
+  padding: 12px;
+  font-weight: bold;
+}
+
+.entry-forms-button:hover,
+.entry-forms-button:active {
+  background-color: #af601a;
+  color: white;
+}
+
+.form-field-list {
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+}
+
+/* 每個欄位一張小卡片 */
+.form-field {
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.form-field p {
+  margin: 0;
+}
+
+/* 欄位名稱 */
+.form-field-label {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+/* 範例填法：用等寬字體，看起來像手寫在表格上 */
+.form-field-example {
+  font-family: Menlo, Consolas, monospace;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #1f618d;
+  margin: 4px 0 !important;
+}
+
+/* 填寫說明 */
+.form-field-note {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+/* ===== 緊急聯絡：怎麼撥打 ===== */
+.dial-steps {
+  margin: 8px 0 0;
+  padding-left: 20px;
+  line-height: 1.7;
+  font-size: 0.95rem;
 }
