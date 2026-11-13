@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <!-- 讓網頁在手機上正常縮放 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>青森六天五夜</title>
+
+  <!--
+    粉圓字型（Huninn），從 Google Fonts 下載。
+    preconnect：先跟字型伺服器打招呼，字型會載得比較快。
+    display=swap：字型還沒下載完時，先用手機內建字型顯示，不會整頁空白。
+    沒有網路時一樣看得到內容，只是字型變回手機內建的。
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&display=swap">
+
+  <!-- 新版的樣式（舊版的 style.css 不會用到） -->
+  <link rel="stylesheet" href="new-style.css">
+</head>
+<body>
+  <!--
+    頂端固定選單：往下捲也會一直黏在畫面最上面。
+    項目比較多，手機上一排放不下，可以左右滑動。
+    data-page 是我們自己取的標記，new-app.js 會用它來找出「目前在哪一頁」，把那顆按鈕變色。
+  -->
+  <nav class="top-nav">
+    <ul class="nav-list">
+      <li><a href="#" data-page="home">🏠 首頁</a></li>
+      <li><a href="#day-1" data-page="day">🗓️ 行程</a></li>
+      <li><a href="#hotels" data-page="hotels">🏨 住宿</a></li>
+      <li><a href="#checklist" data-page="checklist">✅ 清單</a></li>
+      <li><a href="#emergency" data-page="emergency">🆘 緊急</a></li>
+      <li><a href="#insurance" data-page="insurance">🛡️ 保險</a></li>
+      <li><a href="#entry-forms" data-page="entry-forms">📝 入境</a></li>
+      <!-- 外部網站：在新分頁打開，rel="noopener" 是外部連結的安全設定 -->
+      <li><a href="https://japantravel.navitime.com/zh-tw/area/jp/route/" target="_blank" rel="noopener">🚃 查電車</a></li>
+    </ul>
+  </nav>
+
+  <!-- 主要內容區：new-app.js 會依照網址把對應的畫面放進來 -->
+  <main id="app">
+  </main>
+
+  <!-- 順序很重要：先載入資料（和舊版共用同一份 data.js），再載入新版程式 -->
+  <script src="data.js"></script>
+  <script src="new-app.js"></script>
+</body>
+</html>

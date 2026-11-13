@@ -1,0 +1,584 @@
+/* =============================================
+   新版樣式：日系繪本風
+   只給 new.html 用，舊版的 style.css 不受影響。
+   ============================================= */
+
+/* ---------------------------------------------
+   顏色和尺寸「變數」
+   :root 代表整個網頁。在這裡取好名字（-- 開頭），
+   下面就能用 var(--名字) 拿來用。
+   以後想換顏色，只要改這裡一個地方，全站一起變。
+   --------------------------------------------- */
+:root {
+  --paper: #FFFCF6;   /* 和紙白：底色 */
+  --ink: #3E3A39;     /* 墨灰：文字和粗線框 */
+  --coral: #F2A497;   /* 珊瑚粉 */
+  --yellow: #F6D27A;  /* 山吹黃 */
+  --mizu: #A8D3E6;    /* 水色 */
+  --green: #B9DAA5;   /* 若竹綠 */
+
+  --line: 3px;        /* 粗線框的粗細 */
+  --radius: 20px;     /* 大圓角 */
+}
+
+/* box-sizing: border-box：寬度包含框線和內距，排版比較好算 */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--paper);
+  color: var(--ink);
+  /* 先用粉圓；下載不到時，依序改用手機內建的中文字型 */
+  font-family: "Huninn", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  line-height: 1.6;
+}
+
+/* ---------------------------------------------
+   頂端固定選單
+   --------------------------------------------- */
+.top-nav {
+  /* sticky + top: 0：捲動時黏在畫面最上面 */
+  position: sticky;
+  top: 0;
+  z-index: 10; /* 疊在其他內容上面，不會被蓋住 */
+  background-color: var(--paper);
+  border-bottom: var(--line) solid var(--ink);
+}
+
+.nav-list {
+  display: flex;
+  gap: 8px;
+  margin: 0 auto;
+  padding: 10px 16px;
+  max-width: 720px;
+  list-style: none;
+  /* 按鈕太多放不下時，可以左右滑動，不會換行 */
+  overflow-x: auto;
+  white-space: nowrap;
+  /* 讓 iPhone 左右滑動比較順 */
+  -webkit-overflow-scrolling: touch;
+}
+
+.nav-list a {
+  display: block;
+  padding: 6px 14px;
+  border: var(--line) solid var(--ink);
+  border-radius: 999px; /* 很大的圓角 → 膠囊形狀 */
+  background-color: white;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+/* 目前所在的那一頁：山吹黃底色（new-app.js 會幫它加上 active） */
+.nav-list a.active {
+  background-color: var(--yellow);
+}
+
+/* ---------------------------------------------
+   主要內容區
+   --------------------------------------------- */
+main {
+  max-width: 720px; /* 電腦上最寬 720px，置中；手機上就是滿版 */
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+}
+
+.page-title {
+  margin: 0 0 16px;
+  font-size: 1.4rem;
+}
+
+/* ---------------------------------------------
+   卡片：繪本風的基本外框
+   白底 + 墨灰粗框 + 大圓角。
+   陰影是「往下偏移、不模糊」的實心墨色，像貼紙一樣，
+   符合「平塗不用漸層」的風格。
+   --------------------------------------------- */
+.card {
+  background-color: white;
+  border: var(--line) solid var(--ink);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 0 var(--ink);
+}
+
+/* 還沒做好的畫面先顯示這個 */
+.placeholder {
+  text-align: center;
+  background-color: var(--green);
+}
+
+/* 區塊標題，例如「✈️ 航班」 */
+.section-title {
+  margin: 28px 0 12px;
+  font-size: 1.2rem;
+}
+
+/* 灰色小字說明 */
+.small-note {
+  margin: -4px 0 0;
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+/* 四種底色，任何元素加上 bg-xxx 就會變成那個顏色 */
+.bg-coral  { background-color: var(--coral); }
+.bg-yellow { background-color: var(--yellow); }
+.bg-mizu   { background-color: var(--mizu); }
+.bg-green  { background-color: var(--green); }
+
+/* 小標籤（膠囊形），例如航班卡片上的「去程」 */
+.tag {
+  display: inline-block;
+  padding: 0 10px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+/* ---------------------------------------------
+   首頁：插圖＋標題＋倒數
+   --------------------------------------------- */
+.hero {
+  text-align: center;
+  padding-top: 8px;
+  overflow: hidden; /* 雪花飄出卡片外時，超出的部分藏起來 */
+}
+
+/* SVG 插圖：寬度跟著卡片，高度自動等比例 */
+.illust {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hero-title {
+  margin: 4px 0 0;
+  font-size: 1.8rem;
+  letter-spacing: 0.1em;
+}
+
+.hero-date {
+  margin: 0 0 12px;
+}
+
+.countdown {
+  display: inline-block;
+  padding: 8px 24px;
+  background-color: var(--coral);
+  border: var(--line) solid var(--ink);
+  border-radius: var(--radius);
+}
+
+.countdown-label {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.countdown-number {
+  margin: 0;
+  font-size: 2.2rem;
+  line-height: 1.2;
+}
+
+/* 「天」字比數字小一點 */
+.countdown-number small {
+  font-size: 1rem;
+}
+
+/* ---------------------------------------------
+   航班卡片
+   --------------------------------------------- */
+.flight-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 日期推到最右邊 */
+.flight-date {
+  margin-left: auto;
+  font-size: 0.9rem;
+}
+
+/* 起飛 → 飛機 → 抵達，排成一橫排 */
+.flight-route {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.flight-point {
+  text-align: center;
+  min-width: 80px;
+}
+
+.flight-time {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.flight-place {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* 中間的虛線＋飛機：flex: 1 → 把左右兩邊之外的空間都佔滿 */
+.flight-line {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  border-bottom: var(--line) dashed var(--ink);
+  margin: 0 8px 22px;
+}
+
+.plane {
+  width: 56px;
+  height: auto;
+  margin-bottom: -14px; /* 讓飛機壓在虛線上 */
+  background-color: white; /* 遮住飛機後面的虛線 */
+}
+
+/* ---------------------------------------------
+   首頁：每日行程按鈕
+   grid：排成格子，手機上一排兩個
+   --------------------------------------------- */
+.day-chips {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.day-chip {
+  display: block;
+  height: 100%;
+  padding: 10px 12px;
+  border: var(--line) solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 0 var(--ink);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+/* 按下去的時候往下沉，像真的按鈕 */
+.day-chip:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 var(--ink);
+}
+
+.day-chip-number {
+  font-size: 1.1rem;
+}
+
+.day-chip-date {
+  margin-left: 6px;
+  font-size: 0.85rem;
+}
+
+.day-chip-title {
+  display: block;
+  font-size: 0.95rem;
+}
+
+/* 白底（標籤用） */
+.bg-white { background-color: white; }
+
+/* ---------------------------------------------
+   每日行程：上方的日期切換列
+   --------------------------------------------- */
+.day-tabs {
+  display: flex;
+  gap: 8px;
+  margin: 0 -16px 16px; /* 往左右延伸到螢幕邊緣，滑動時比較自然 */
+  padding: 4px 16px 10px;
+  overflow-x: auto;     /* 放不下時左右滑動 */
+  -webkit-overflow-scrolling: touch;
+}
+
+.day-tab {
+  flex: 0 0 auto; /* 不要被壓扁 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 12px;
+  background-color: white;
+  border: var(--line) solid var(--ink);
+  border-radius: 16px;
+  box-shadow: 0 3px 0 var(--ink);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.day-tab.active {
+  background-color: var(--yellow);
+  /* 選到的那天，按鈕本身也小小彈一下 */
+  animation: pop 0.4s ease-out;
+}
+
+.day-tab-number {
+  font-size: 1rem;
+}
+
+.day-tab-date {
+  font-size: 0.8rem;
+}
+
+/* ---------------------------------------------
+   每日行程：當天標題卡
+   --------------------------------------------- */
+.day-header {
+  background-color: var(--mizu);
+}
+
+.day-title {
+  margin: 6px 0 0;
+  font-size: 1.4rem;
+}
+
+.day-area {
+  margin: 0;
+}
+
+/* ---------------------------------------------
+   每日行程：時間軸
+   左邊一條直線（用 ::before 畫），每個地點左邊有一個圓點
+   --------------------------------------------- */
+.timeline {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 52px; /* 左邊空出位置放直線和圓點 */
+  list-style: none;
+}
+
+/* 直的那條線 */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 24px;
+  left: 19px;
+  border-left: var(--line) dashed var(--ink);
+}
+
+.timeline-item {
+  position: relative;
+}
+
+/* 圓點：裡面放類型的 emoji */
+.timeline-dot {
+  position: absolute;
+  top: 10px;
+  left: -52px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--line) solid var(--ink);
+  border-radius: 50%;
+  font-size: 1.1rem;
+}
+
+/* 地點卡片 */
+.place-card {
+  padding: 12px 14px;
+}
+
+/* 把 <summary> 前面瀏覽器內建的小三角形藏起來，改用我們自己的 ▾ */
+.place-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  list-style: none;
+  cursor: pointer;
+}
+.place-head::-webkit-details-marker {
+  display: none;
+}
+
+.place-info {
+  flex: 1;
+}
+
+.place-time {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.place-name {
+  margin: 2px 0 6px;
+  font-size: 1.1rem;
+}
+
+.place-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.place-summary {
+  margin: 6px 0 0;
+  font-size: 0.95rem;
+}
+
+/* 展開後 ▾ 轉成 ▴ 的方向 */
+.toggle-icon {
+  font-size: 1.2rem;
+  transition: transform 0.2s;
+}
+.place-card[open] .toggle-icon {
+  transform: rotate(180deg);
+}
+
+/* 點開後的詳細資訊：上面一條虛線隔開 */
+.place-detail {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 2px dashed var(--ink);
+  font-size: 0.95rem;
+}
+
+.place-detail p {
+  margin: 0 0 8px;
+}
+
+/* 小提醒：淡黃色底 */
+.detail-tips {
+  padding: 8px 10px;
+  background-color: var(--yellow);
+  border-radius: 12px;
+}
+
+.detail-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* 膠囊形按鈕（電話、地圖） */
+.pill-button {
+  display: inline-block;
+  padding: 6px 14px;
+  border: var(--line) solid var(--ink);
+  border-radius: 999px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+/* ---------------------------------------------
+   住宿資訊
+   --------------------------------------------- */
+.hotel-summary {
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.hotel-summary strong {
+  font-size: 1.5rem;
+}
+
+.hotel-card p {
+  margin: 0 0 8px;
+}
+
+/* 左邊的粗色條：用「內陰影」畫在框線裡面，這樣墨灰粗框還在
+   box-shadow 可以用逗號放兩個：
+     inset 14px 0 0 顏色 → 往內畫一條 14px 寬的色條
+     0 4px 0 墨灰       → 原本卡片下方的貼紙陰影
+   padding-left 加大，文字才不會壓到色條 */
+.hotel-card { padding-left: 28px; }
+.stripe-coral { box-shadow: inset 14px 0 0 var(--coral), 0 4px 0 var(--ink); }
+.stripe-mizu  { box-shadow: inset 14px 0 0 var(--mizu),  0 4px 0 var(--ink); }
+.stripe-green { box-shadow: inset 14px 0 0 var(--green), 0 4px 0 var(--ink); }
+
+.hotel-name {
+  margin: 8px 0 4px;
+  font-size: 1.25rem;
+}
+
+.hotel-dates {
+  font-size: 1rem;
+}
+
+/* =============================================
+   動畫
+   @keyframes 定義「動作」：從 0%（開始）到 100%（結束）分別長什麼樣子。
+   再用 animation 把動作套到元素上：
+     animation: 動作名稱 一輪幾秒 速度曲線 重複次數;
+   ============================================= */
+
+/* SVG 裡的形狀要旋轉時，用自己的中心點當軸心（不然會繞著畫布左上角轉） */
+.anim-sway,
+.anim-float {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* 輕輕左右搖（蘋果） */
+@keyframes sway {
+  0%, 100% { transform: rotate(-5deg); }
+  50%      { transform: rotate(5deg); }
+}
+.anim-sway {
+  transform-origin: bottom center; /* 以蘋果底部當軸心，像不倒翁 */
+  animation: sway 3s ease-in-out infinite;
+}
+
+/* 輕輕上下飄（金魚燈籠、飛機） */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-5px); }
+}
+.anim-float {
+  animation: float 2.5s ease-in-out infinite;
+}
+
+/* 雪花往下飄，一邊變透明 */
+@keyframes snow {
+  0%   { transform: translateY(0);    opacity: 0; }
+  20%  { opacity: 1; }
+  100% { transform: translateY(80px); opacity: 0; }
+}
+.anim-snow {
+  animation: snow 4s linear infinite;
+}
+
+/* 切換日期時，整塊行程從下面彈上來：
+   先在下面一點、稍微縮小 → 衝過頭往上一點 → 回到原位 */
+@keyframes bounce-in {
+  0%   { transform: translateY(24px) scale(0.97); opacity: 0; }
+  60%  { transform: translateY(-6px) scale(1.01); opacity: 1; }
+  80%  { transform: translateY(2px); }
+  100% { transform: translateY(0) scale(1); }
+}
+.bounce {
+  animation: bounce-in 0.5s ease-out;
+}
+
+/* 按鈕「啵」一下：放大再縮回來 */
+@keyframes pop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+
+/* ---------------------------------------------
+   支援「減少動態效果」
+   手機設定裡打開「減少動態效果」（iPhone：設定 → 輔助使用 → 動作），
+   瀏覽器就會符合這個條件，所有動畫都停下來。
+   雪花停住時 opacity 是 1，所以還看得到。
+   --------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
