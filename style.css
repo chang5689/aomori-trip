@@ -519,6 +519,27 @@ main {
   color: white;
 }
 
+/* 首頁的「查電車（NAVITIME）」按鈕：紫色，和其他四顆區分
+   它是第 5 顆按鈕，因為 .home-buttons a 設了 flex: 1 1 40%（可以變寬），
+   自己一排時會自動撐滿整排，不用另外寫寬度 */
+.navitime-button {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  background-color: white;
+  color: #6c3483;
+  border: 2px solid #6c3483;
+  border-radius: 12px;
+  padding: 12px;
+  font-weight: bold;
+}
+
+.navitime-button:hover,
+.navitime-button:active {
+  background-color: #6c3483;
+  color: white;
+}
+
 .form-field-list {
   list-style: none;
   margin: 0 0 24px;

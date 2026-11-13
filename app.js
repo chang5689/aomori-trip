@@ -22,6 +22,12 @@ function renderHome() {
       <a class="checklist-button" href="#checklist">✅ 行前清單</a>
       <a class="insurance-button" href="#insurance">🛡️ 日本保險</a>
       <a class="entry-forms-button" href="#entry-forms">📝 入境表格</a>
+      <!--
+        查電車用的外部網站（Japan Travel by NAVITIME 繁體中文版的轉乘查詢頁）。
+        target="_blank"：在新分頁打開，查完切回來，行程網站還停在原本的頁面。
+        rel="noopener"：安全設定，讓新分頁沒辦法反過來控制我們的網站，外部連結都建議加上。
+      -->
+      <a class="navitime-button" href="https://japantravel.navitime.com/zh-tw/area/jp/route/" target="_blank" rel="noopener">🚃 查電車（NAVITIME）</a>
     </div>
   `;
   html += "<h2 class=\"section-title\">每日行程</h2>";
